@@ -1,4 +1,4 @@
-pub mod add_two_sum {
+pub mod add_two_sum_mod {
     use std::collections::HashMap;
 
     pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
@@ -41,7 +41,7 @@ pub mod add_two_sum {
 
         #[test]
         fn example_2() {
-            let nums = vec![3,2,4];
+            let nums = vec![3, 2, 4];
             let target = 6;
             let output = two_sum(nums.clone(), target);
             let expect = vec![1, 2];

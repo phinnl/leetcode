@@ -1,4 +1,4 @@
-pub mod add_two_sum {
+pub mod two_numbers {
     #[derive(PartialEq, Eq, Clone, Debug)]
     pub struct ListNode {
         pub val: i32,
@@ -9,10 +9,10 @@ pub mod add_two_sum {
         l1: Option<Box<ListNode>>,
         l2: Option<Box<ListNode>>,
     ) -> Option<Box<ListNode>> {
-        if l1 == None {
+        if l1.is_none() {
             return l2;
         }
-        if l2 == None {
+        if l2.is_none() {
             return l1;
         }
         let mut head = Some(Box::new(ListNode { val: 0, next: None }));
@@ -53,7 +53,7 @@ pub mod add_two_sum {
             let node_head: &mut Box<ListNode> = tail_head.unwrap();
             if sum >= 10 {
                 is_increase = true;
-                sum = sum - 10;
+                sum -= 10;
             } else {
                 is_increase = false;
             }
@@ -68,7 +68,7 @@ pub mod add_two_sum {
             node_head.val = sum;
             tail_head = node_head.next.as_mut();
         }
-        return head;
+        head
     }
 
     #[cfg(test)]
