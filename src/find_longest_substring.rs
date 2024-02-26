@@ -1,4 +1,4 @@
-pub mod longest_substrings {
+pub mod longest_substring {
     pub fn length_of_longest_substring(s: String) -> i32 {
         let mut length = 0;
         let mut st = "".to_owned();
