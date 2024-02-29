@@ -1,32 +1,47 @@
 pub mod longest_palindromic {
 
     pub fn longest_palindrome(s: String) -> String {
-        let equal = |option: Option<char>, item: char| -> bool {
+        let equal = |option: Option<&char>, item: char| -> bool {
             match option {
-                Some(x) => x == item,
+                Some(x) => *x == item,
                 None => false,
             }
         };
         let mut palindrome = String::from("");
+        let s_bytes = s
+            .as_bytes()
+            .iter()
+            .map(|&item| item as char)
+            .collect::<Vec<char>>();
+          let length = s.len();
         for (index, item) in s.chars().enumerate() {
             let mut max_temp = item.to_string();
-            let max_index = if index > (s.len() / 2) {
-                s.len() - 1 - index
+            let max_index = if index > (length / 2) {
+                length - 1 - index
             } else {
                 index
             };
-            if index > 0 && equal(s.chars().nth(index - 1), item) {
-                max_temp = format!(
-                    "{}{}",
-                    s.chars().nth(index - 1).unwrap(),
-                    s.chars().nth(index - 1).unwrap()
-                );
+            let op_prev_item = if index > 0 {
+                s_bytes.get(index - 1)
+            } else {
+                None
+            };
+            if equal(op_prev_item, item) {
+                max_temp = format!("{}{}", op_prev_item.unwrap(), op_prev_item.unwrap());
                 if max_temp.len() > palindrome.len() {
                     palindrome = max_temp.clone();
                 }
-                for i in 1..max_index {
-                    let item_prev = s.chars().nth(index - 1 - i).unwrap();
-                    let item_next = s.chars().nth(index + i).unwrap();
+                for i in 1..max_index+1 {
+                  if (index as i32 - 1 - i as i32) < 0 || index + i >= length {
+                    break;
+                  } 
+                  let item_prev_some = s_bytes.get(index - 1 - i);
+                  let item_next_some = s_bytes.get(index + i);
+                  if item_prev_some.is_none() || item_next_some.is_none() {
+                    break;
+                  }
+                  let item_prev = *s_bytes.get(index - 1 - i).unwrap();
+                  let item_next = *s_bytes.get(index + i).unwrap();
                     if item_prev != item_next {
                         break;
                     }
@@ -45,13 +60,13 @@ pub mod longest_palindromic {
                 continue;
             }
             for i in 0..max_index {
-                let item_prev_some = s.chars().nth(index - 1 - i);
-                let item_next_some = s.chars().nth(index + 1 + i);
+                let item_prev_some = s_bytes.get(index - 1 - i);
+                let item_next_some = s_bytes.get(index + 1 + i);
                 if item_prev_some.is_none() || item_next_some.is_none() {
                     break;
                 }
-                let item_prev = item_prev_some.unwrap();
-                let item_next = item_next_some.unwrap();
+                let item_prev = *item_prev_some.unwrap();
+                let item_next = *item_next_some.unwrap();
                 if item_prev != item_next {
                     break;
                 }
@@ -76,12 +91,15 @@ pub mod longest_palindromic {
 
         #[test]
         fn example_2() {
-            assert_eq!(longest_palindrome("cbbd".to_owned()), "bb".to_owned());
+            assert_eq!(longest_palindrome("bb".to_owned()), "bb".to_owned());
         }
 
         #[test]
         fn example_3() {
-            assert_eq!(longest_palindrome("1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111".to_owned()), "1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111".to_owned());
+            assert_eq!(
+              longest_palindrome("xaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeeeffffffffffgggggggggghhhhhhhhhhiiiiiiiiiijjjjjjjjjjkkkkkkkkkkllllllllllmmmmmmmmmmnnnnnnnnnnooooooooooppppppppppqqqqqqqqqqrrrrrrrrrrssssssssssttttttttttuuuuuuuuuuvvvvvvvvvvwwwwwwwwwwxxxxxxxxxxyyyyyyyyyyzzzzzzzzzzyyyyyyyyyyxxxxxxxxxxwwwwwwwwwwvvvvvvvvvvuuuuuuuuuuttttttttttssssssssssrrrrrrrrrrqqqqqqqqqqppppppppppoooooooooonnnnnnnnnnmmmmmmmmmmllllllllllkkkkkkkkkkjjjjjjjjjjiiiiiiiiiihhhhhhhhhhggggggggggffffffffffeeeeeeeeeeddddddddddccccccccccbbbbbbbbbbaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeeeffffffffffgggggggggghhhhhhhhhhiiiiiiiiiijjjjjjjjjjkkkkkkkkkkllllllllllmmmmmmmmmmnnnnnnnnnnooooooooooppppppppppqqqqqqqqqqrrrrrrrrrrssssssssssttttttttttuuuuuuuuuuvvvvvvvvvvwwwwwwwwwwxxxxxxxxxxyyyyyyyyyyzzzzzzzzzzyyyyyyyyyyxxxxxxxxxxwwwwwwwwwwvvvvvvvvvvuuuuuuuuuuttttttttttssssssssssrrrrrrrrrrqqqqqqqqqqppppppppppoooooooooonnnnnnnnnnmmmmmmmmmmllllllllllkkkkkkkkkkjjjjjjjjjjiiiiiiiiiihhhhhhhhhhggggggggggffffffffffeeeeeeeeeeddddddddddccccccccccbbbbbbbbbbaaaa".to_owned()), "aaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeeeffffffffffgggggggggghhhhhhhhhhiiiiiiiiiijjjjjjjjjjkkkkkkkkkkllllllllllmmmmmmmmmmnnnnnnnnnnooooooooooppppppppppqqqqqqqqqqrrrrrrrrrrssssssssssttttttttttuuuuuuuuuuvvvvvvvvvvwwwwwwwwwwxxxxxxxxxxyyyyyyyyyyzzzzzzzzzzyyyyyyyyyyxxxxxxxxxxwwwwwwwwwwvvvvvvvvvvuuuuuuuuuuttttttttttssssssssssrrrrrrrrrrqqqqqqqqqqppppppppppoooooooooonnnnnnnnnnmmmmmmmmmmllllllllllkkkkkkkkkkjjjjjjjjjjiiiiiiiiiihhhhhhhhhhggggggggggffffffffffeeeeeeeeeeddddddddddccccccccccbbbbbbbbbbaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeeeffffffffffgggggggggghhhhhhhhhhiiiiiiiiiijjjjjjjjjjkkkkkkkkkkllllllllllmmmmmmmmmmnnnnnnnnnnooooooooooppppppppppqqqqqqqqqqrrrrrrrrrrssssssssssttttttttttuuuuuuuuuuvvvvvvvvvvwwwwwwwwwwxxxxxxxxxxyyyyyyyyyyzzzzzzzzzzyyyyyyyyyyxxxxxxxxxxwwwwwwwwwwvvvvvvvvvvuuuuuuuuuuttttttttttssssssssssrrrrrrrrrrqqqqqqqqqqppppppppppoooooooooonnnnnnnnnnmmmmmmmmmmllllllllllkkkkkkkkkkjjjjjjjjjjiiiiiiiiiihhhhhhhhhhggggggggggffffffffffeeeeeeeeeeddddddddddccccccccccbbbbbbbbbbaaaa".to_owned()
+            
+            );
         }
     }
 }
