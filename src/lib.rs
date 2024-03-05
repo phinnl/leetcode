@@ -5,3 +5,4 @@ pub mod median_of_two_arr;
 pub mod find_longest_palindromic_substring;
 pub mod convert_zigzag_string;
 pub mod reverse_int;
+pub mod string_to_integer;

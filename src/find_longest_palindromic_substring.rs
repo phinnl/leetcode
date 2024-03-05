@@ -1,4 +1,3 @@
-pub mod longest_palindromic {
 
     pub fn longest_palindrome(s: String) -> String {
         let equal = |option: Option<&char>, item: char| -> bool {
@@ -102,4 +101,3 @@ pub mod longest_palindromic {
             );
         }
     }
-}
