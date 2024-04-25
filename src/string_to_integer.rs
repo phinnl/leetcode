@@ -21,14 +21,17 @@ pub fn my_atoi(s: String) -> i32 {
         }
     }
 
-    let temp_isize = temp.parse::<isize>().unwrap_or(0);
-        println!("{temp} {temp_isize}");
-    if temp_isize > i32::MAX as isize {
-        i32::MAX
-    } else if temp_isize < i32::MIN as isize {
-        i32::MIN
-    } else {
-        temp_isize as i32
+    match temp.parse::<i32>() {
+        Ok(i) => i,
+        Err(_) => {
+            if temp.starts_with('-') {
+                i32::MIN
+            } else if temp.chars().any(|c| c.is_numeric()) {
+                i32::MAX
+            } else {
+                0
+            }
+        }
     }
 }
 
@@ -38,7 +41,7 @@ mod tests {
 
     #[test]
     fn example_1() {
-        let s = "20000000000000000000".to_owned();
+        let s = "words and 987".to_owned();
         assert_eq!(412, my_atoi(s));
     }
 }
