@@ -9,3 +9,4 @@ pub mod string_to_integer;
 pub mod is_palindromic;
 pub mod regex_matching;
 pub mod container_with_most_water;
+pub mod integer_to_roman;
