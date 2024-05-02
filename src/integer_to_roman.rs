@@ -1,7 +1,7 @@
 pub fn int_to_roman(num: i32) -> String {
     const RADIX: u32 = 10;
     let roman = ["I", "V", "X", "L", "C", "D", "M"];
-    let mut result = String::from("");
+    let mut result = String::new();
     let nums = num.to_string()
         .as_bytes()
         .iter()
