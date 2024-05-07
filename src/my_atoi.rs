@@ -42,6 +42,6 @@ mod tests {
     #[test]
     fn example_1() {
         let s = "words and 987".to_owned();
-        assert_eq!(412, my_atoi(s));
+        assert_eq!(0, my_atoi(s));
     }
 }

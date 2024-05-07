@@ -5,7 +5,7 @@ pub mod median_of_two_arr;
 pub mod longest_palindrome;
 pub mod convert_zigzag_string;
 pub mod reverse_int;
-pub mod string_to_integer;
+pub mod my_atoi;
 pub mod is_palindromic;
 pub mod regex_matching;
 pub mod container_with_most_water;
