@@ -1,17 +1,16 @@
 pub fn longest_common_prefix(strs: Vec<String>) -> String {
     let mut result = String::new();
     let first_str_bytes = strs[0].as_bytes();
-    'outer: for index in 0..first_str_bytes.len() {
-        let item = first_str_bytes[index] as char;
+    'outer: for (index, item) in first_str_bytes.iter().enumerate() {
         for str_next in strs[1..].iter() {
             if let Some(item_next) = str_next.as_bytes().get(index) {
-                if item == *item_next as char {
+                if *item as char == *item_next as char {
                     continue;
                 }
             }
             break 'outer;
         }
-        result.push(item);
+        result.push(*item as char);
     }
     result
 }
