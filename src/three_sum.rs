@@ -1,3 +1,5 @@
+// refer to https://leetcode.com/problems/3sum/
+
 pub fn three_sum(mut nums: Vec<i32>) -> Vec<Vec<i32>> {
     let mut result: Vec<Vec<i32>> = Vec::new();
     nums.sort();

@@ -4,6 +4,8 @@ pub struct ListNode {
     pub next: Option<Box<ListNode>>,
 }
 
+// refer to https://leetcode.com/problems/add-two-numbers/
+
 pub fn add_two_numbers(
     l1: Option<Box<ListNode>>,
     l2: Option<Box<ListNode>>,

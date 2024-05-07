@@ -1,3 +1,5 @@
+// refer to https://leetcode.com/problems/median-of-two-sorted-arrays/
+
 pub fn find_median_sorted_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
     let (mut nums1, mut nums2) = (nums1, nums2);
     nums1.append(&mut nums2);
@@ -16,12 +18,6 @@ mod tests {
 
     #[test]
     fn example_1() {
-        //       Input: nums1 = [1,3], nums2 = [2]
-        // Output: 2.00000
-        // Explanation: merged array = [1,2,3] and median is 2.
-        // Example 2:
-
-        // Input: nums1 = [1,2], nums2 = [3,4]
         let input_1 = vec![1, 3];
         let input_2 = vec![2];
         let expect: f64 = 2.0;

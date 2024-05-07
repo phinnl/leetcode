@@ -1,5 +1,7 @@
 use std::cmp::max;
 
+// refer to https://leetcode.com/problems/maximum-subarray/
+
 pub fn max_sub_array(nums: Vec<i32>) -> i32 {
     let mut result = i32::MIN;
     let mut sum = 0;

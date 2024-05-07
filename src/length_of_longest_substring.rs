@@ -1,4 +1,6 @@
-pub fn find_longest_substring(s: String) -> i32 {
+// refer to https://leetcode.com/problems/longest-substring-without-repeating-characters/
+
+pub fn length_of_longest_substring(s: String) -> i32 {
     let mut length = 0;
     let mut st = String::new();
     for item in s.chars() {
@@ -26,7 +28,7 @@ mod tests {
     #[test]
     fn example_1() {
         let input = "abcabcbb".to_owned();
-        let output = find_longest_substring(input.clone());
+        let output = length_of_longest_substring(input.clone());
         let expect = 3;
         assert_eq!(
             output, expect,
@@ -36,7 +38,7 @@ mod tests {
     #[test]
     fn example_2() {
         let input = "bbbbb".to_owned();
-        let output = find_longest_substring(input.clone());
+        let output = length_of_longest_substring(input.clone());
         let expect = 1;
         assert_eq!(
             output, expect,
@@ -46,7 +48,7 @@ mod tests {
     #[test]
     fn example_3() {
         let input = "pwwkew".to_owned();
-        let output = find_longest_substring(input.clone());
+        let output = length_of_longest_substring(input.clone());
         let expect = 3;
         assert_eq!(
             output, expect,

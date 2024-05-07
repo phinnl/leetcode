@@ -1,4 +1,6 @@
 
+// refer to https://leetcode.com/problems/longest-palindrome/
+
 pub fn longest_palindrome(s: String) -> String {
     let equal = |option: Option<&char>, item: char| -> bool {
         match option {

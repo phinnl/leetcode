@@ -1,3 +1,5 @@
+// refer to https://leetcode.com/problems/3sum-closest/
+
 pub fn three_sum_closest(mut nums: Vec<i32>, target: i32) -> i32 {
     let mut result: Option<i32> = None;
     nums.sort();

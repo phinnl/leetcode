@@ -1,3 +1,5 @@
+// refer to https://leetcode.com/problems/zigzag-conversion/
+
 pub fn convert(s: String, num_rows: i32) -> String {
     let len = s.len();
     if len as i32 <= num_rows || num_rows == 1 {

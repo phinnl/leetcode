@@ -1,3 +1,5 @@
+// refer to https://leetcode.com/problems/string-to-integer-atoi/
+
 pub fn my_atoi(s: String) -> i32 {
     let bytes = s.as_bytes();
     let mut temp = String::new();

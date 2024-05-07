@@ -1,3 +1,5 @@
+// refer to https://leetcode.com/problems/longest-common-prefix/
+
 pub fn longest_common_prefix(strs: Vec<String>) -> String {
     let mut result = String::new();
     let first_str_bytes = strs[0].as_bytes();
