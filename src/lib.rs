@@ -18,3 +18,5 @@ pub mod three_sum_closest;
 pub mod repeated_character;
 pub mod best_time_to_buy_and_sell_stock;
 pub mod maximum_different_between_increasing_elements;
+pub mod count_submatrices_with_all_ones;
+pub mod jump_game;
