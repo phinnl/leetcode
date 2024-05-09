@@ -1,3 +1,5 @@
+// refer to https://leetcode.com/problems/count-submatrices-with-all-ones/
+
 pub fn num_submat(mut matrix: Vec<Vec<i32>>) -> i32 {
     let mut result = 0;
     let len = matrix.len();
