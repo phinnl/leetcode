@@ -22,3 +22,5 @@ pub mod count_submatrices_with_all_ones;
 pub mod jump_game;
 pub mod letter_combinations_of_a_phone_number;
 pub mod four_sum;
+pub mod valid_parentheses;
+pub mod generate_parentheses;
