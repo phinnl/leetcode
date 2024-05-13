@@ -24,3 +24,5 @@ pub mod letter_combinations_of_a_phone_number;
 pub mod four_sum;
 pub mod valid_parentheses;
 pub mod generate_parentheses;
+pub mod remove_duplicates_from_sorted_array;
+pub mod add_strings;
