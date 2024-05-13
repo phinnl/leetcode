@@ -26,3 +26,5 @@ pub mod valid_parentheses;
 pub mod generate_parentheses;
 pub mod remove_duplicates_from_sorted_array;
 pub mod add_strings;
+pub mod flip_and_invert_image;
+pub mod leaf_similar;
