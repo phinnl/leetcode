@@ -29,3 +29,4 @@ pub mod add_strings;
 pub mod flip_and_invert_image;
 pub mod leaf_similar;
 pub mod sum_of_left_leaves;
+pub mod license_key_formatting;
