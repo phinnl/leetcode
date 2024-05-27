@@ -32,3 +32,5 @@ pub mod sum_of_left_leaves;
 pub mod license_key_formatting;
 pub mod height_checker;
 pub mod long_pressed_name;
+pub mod can_win_nim;
+pub mod hamming_distance;
