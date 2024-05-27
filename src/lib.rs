@@ -34,3 +34,5 @@ pub mod height_checker;
 pub mod long_pressed_name;
 pub mod can_win_nim;
 pub mod hamming_distance;
+pub mod word_pattern;
+pub mod update_matrix;
