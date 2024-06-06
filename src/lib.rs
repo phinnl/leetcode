@@ -36,3 +36,4 @@ pub mod can_win_nim;
 pub mod hamming_distance;
 pub mod word_pattern;
 pub mod update_matrix;
+pub mod prison_cells_after_n_days;
